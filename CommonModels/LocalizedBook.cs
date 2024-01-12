@@ -1,6 +1,6 @@
 ﻿namespace CommonModels
 {
-    public class LocalizedBook
+    public class LocalizedBook:Document
     {
         public string ISBN { get; set; }
         public int NumberOfPages { get; set; }
