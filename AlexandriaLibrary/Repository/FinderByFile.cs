@@ -1,4 +1,5 @@
 ﻿using Alexandria.Deserializer;
+using System.Runtime.Caching;
 
 namespace Alexandria.Repository
 {
@@ -14,17 +15,24 @@ namespace Alexandria.Repository
 
         public List<object> FindFileById(string documentId)
         {
+            var cache = MemoryCache.Default;
             var resultList = new List<object?>();
             try
             {
-                if (!Directory.Exists(_folderPath)) return resultList;
-                var folderFiles = Directory.GetFiles(_folderPath);
+                resultList = cache.Get(documentId) as List<object?>;
 
-                var filteredFiles = folderFiles
-                    .Where(file => FileContainsDocumentId(file, documentId))
-                    .ToList();
+                if (resultList == null)
+                {
+                    if (!Directory.Exists(_folderPath)) return resultList;
+                    var folderFiles = Directory.GetFiles(_folderPath);
 
-                resultList = filteredFiles.Select(file => _deserializer.DeserializeJson(file)).ToList();
+                    var filteredFiles = folderFiles
+                        .Where(file => FileContainsDocumentId(file, documentId))
+                        .ToList();
+
+                    resultList = filteredFiles.Select(file => _deserializer.DeserializeJson(file)).ToList();
+                    cache.Add(documentId,resultList, DateTimeOffset.Now.AddMinutes(10));
+                }
 
             }
             catch (Exception e)
