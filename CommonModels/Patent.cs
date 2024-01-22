@@ -6,5 +6,6 @@ namespace CommonModels
     {
         public DateTime ExpirationDate { get; set; }
         public string UniqueId { get; set; }
+        public string Authors { get; set; }
     }
 }
