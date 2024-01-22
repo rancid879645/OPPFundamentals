@@ -1,0 +1,10 @@
+{
+  "Title": "Libro Localizado 1",
+  "Authors": "Ana Martinez",
+  "DatePublished": "2022-03-10T14:00:00",
+  "ISBN": "978-1-123456-78-9",
+  "NumberOfPages": 250,
+  "OriginalPublisher": "Global Publishing",
+  "CountryOfLocalization": "Spain",
+  "LocalPublisher": "Editorial Local"
+}

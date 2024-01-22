@@ -5,7 +5,7 @@ namespace Alexandria.Repository
 {
     public class FinderByFile:IFinder
     {
-        private const string _folderPath = "C:/Users/Jonathan_Velosa/Documents/AlexandriaRepo";
+        private const string _folderPath = "../../../AlexandriaRepo";
         private readonly IDeserializer _deserializer;
 
         public FinderByFile(IDeserializer deserializer)
